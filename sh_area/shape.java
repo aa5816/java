@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 class shape extends Thread{
 private static Scanner scan;
-  public static int a,b; public void run () { }
+  public static int a,b; synchronized public void run () { }
 public static void main (String[] args)
 { shape ob;
   circle ci= new circle ();  
@@ -42,21 +42,21 @@ ob=r;
   
 class triangle extends shape
 {      
-    public void run ( )
+   synchronized public void run ( )
  {     System.out.println ("area is "+(0.5*a*b)); System.out.println(Thread.currentThread().getId()); }
  
 }
 
 class rectangle extends shape
 {      
-    public void run ( )
+    synchronized public void run ( )
  {     System.out.println ("area is "+(a*b)); System.out.println(Thread.currentThread().getId()); }
  
 }
 
 class circle extends shape
 {      
-    public void run ( )
+    synchronized public void run ( )
  {     System.out.println ("area is "+(3.14*a*a)); System.out.println(Thread.currentThread().getId()); }
  
 }
