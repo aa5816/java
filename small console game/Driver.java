@@ -1,6 +1,6 @@
 
 import java.io.*;
-import java.util.*; import java.lang.*;
+import java.util.*; import java.lang.*; import java.awt.MouseInfo;
 
 public class Driver extends Thread
 
@@ -33,7 +33,7 @@ static void createmenu()
 char escCode = 0x1B;
 int row = 20; int column = 10;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-String intro ="WELCOME TO SMASH THATo";
+String intro ="WELCOME TO CATCH THATo";
 int i=0;
 System.out.print("<<<<<");
 while(intro.charAt(i)!='o'){
@@ -305,18 +305,18 @@ System.out.println(":::::HOW TO PLAY:::::");
 escCode = 0x1B;
 row = 8; column =8;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.println("1.Press A to move left and D to move right. ");
-
+//System.out.println("1.Press A to move left and D to move right. ");
+System.out.println("1. Move the mouse left and right to move the @ character ");
 escCode = 0x1B;
 row = 10; column =8;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.println("2.Collect as many points as possible before your weapon breaks.");
+System.out.println("2.exit by moving the mouse to the top left corner of the screen");
 
 
 escCode = 0x1B;
 row = 20; column =14;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.println("<-- A                   D -->");
+System.out.println("<-- mouse left                   mouse right -->");
 
 escCode = 0x1B;
 row = 45; column =24;
@@ -402,18 +402,22 @@ static void playgame() throws IOException
         createdisplay();
          char escCode;
          int row,column;
-
+int a=0;
 Random rand = new Random();
-
-char a = 'q';
+double mouseX,mouseY,p=1.0 ;
+//char a = 'q';
 d=(rand.nextInt(6)*5)+20;
-
-while(a!='e'){
-
-a=(char)System.in.read();
-
+mouseX = MouseInfo.getPointerInfo().getLocation().getX(); mouseY = MouseInfo.getPointerInfo().getLocation().getY();
+while(p!=0)
+{ 
+p=MouseInfo.getPointerInfo().getLocation().getX(); 
+//a=(char)System.in.read();
+if (p<=mouseX)
+a=2;
+else
+a=3;
 switch(a){
-case 'a' : if(x2-5>15){
+case 2 : if(x2-5>15){
 	  escCode = 0x1B;
 	  row = 20; column =x2;
 	  System.out.print(String.format("%c[%d;%df",escCode,row,column));
@@ -424,7 +428,7 @@ case 'a' : if(x2-5>15){
 	   System.out.print("@");}
 	   break;
 
-case 'd' : if(x2+5 <50){
+case 3 : if(x2+5 <50){
 	escCode = 0x1B;
 	  row = 20; column =x2;
 	  System.out.print(String.format("%c[%d;%df",escCode,row,column));
@@ -547,7 +551,7 @@ if(x[i]>=49){x[i]=1;}
 
 try
 {
-    Thread.sleep(5);
+    Thread.sleep(10);
 }
 catch(InterruptedException ex)
 {
@@ -569,7 +573,7 @@ catch(InterruptedException ex)
 
 if(j == 20 && d==x2)
 {
-	char a=(char)System.in.read();
+	//char a=(char)System.in.read();
 	escCode = 0x1B;
 	row = j; column =d;
 	System.out.print(String.format("%c[%d;%df",escCode,row,column));
