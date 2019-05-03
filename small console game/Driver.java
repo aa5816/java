@@ -5,7 +5,7 @@ import java.util.*; import java.lang.*; import java.awt.MouseInfo;
 public class Driver extends Thread
 
 {
-	static int[] x=new int[25];
+	static int[] x=new int[27];
 	public static int j=0;
 	static int x2=40;
 	public static int d=0;
@@ -35,7 +35,7 @@ int row = 20; int column = 10;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 String intro ="WELCOME TO CATCH THATo";
 int i=0;
-System.out.print("<<<<<");
+System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT+"<<<<<");
 while(intro.charAt(i)!='o'){
 
 System.out.print(intro.charAt(i));
@@ -49,14 +49,14 @@ catch(InterruptedException ex)
 }
 i++;}
 System.out.print(">>>>>");
-
+System.out.print(ConsoleColors.RESET);
 
 escCode = 0x1B;
 row = 30; column = 15;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 
 
-System.out.println("1.PLAY GAME.....");
+System.out.println(ConsoleColors.RED_BOLD+"1.PLAY GAME.....");
 try
 {
     Thread.sleep(500);
@@ -110,7 +110,7 @@ int input=0;
 while ((input!=1)&&(input!=2) &&(input!=1))
 {scan = new Scanner(System.in);
 input = scan.nextInt();
-
+System.out.print(ConsoleColors.RESET);
 switch(input)
 {
 case 1 : try {
@@ -148,7 +148,7 @@ catch(InterruptedException ex)
      escCode = 0x1B;
      row = 15; column = 12;
      System.out.print(String.format("%c[%d;%df",escCode,row,column));
-	 System.out.println("Byyeee !!!!!!");
+	 System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"Byyeee !!!!!!"+ConsoleColors.RESET);
 	 try
 	 {
 	     Thread.sleep(1000);
@@ -160,13 +160,13 @@ catch(InterruptedException ex)
 	 escCode = 0x1B;
 	 row = 55; column = 25;
 	 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-	 System.out.println("TOODLES"); 
+	 System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"TOODLES"+ConsoleColors.RESET); 
 	 System.exit(0);
 
 default : escCode = 0x1B;
           row = 10; column = 5;
           System.out.print(String.format("%c[%d;%df",escCode,row,column));
-	      System.out.println("Please enter valid choice !");
+	      System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"Please enter valid choice !");
 	      try
 	      {
 	          Thread.sleep(1000);
@@ -179,7 +179,8 @@ default : escCode = 0x1B;
 	      row = 10; column =5;
 	      System.out.print(String.format("%c[%d;%df",escCode,row,column));
 	      System.out.println("                              ");
-	      break;
+	      System.out.print(ConsoleColors.RESET);
+              break;
 	  }
 }
 }
@@ -196,7 +197,7 @@ for(int x=1;x<77;x++)
 escCode = 0x1B;
 row = x; column =1;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.print("_");
+System.out.print(ConsoleColors.CYAN+"_");
 try
 {
     Thread.sleep(8);
@@ -250,7 +251,7 @@ catch(InterruptedException ex)
 {
     Thread.currentThread().interrupt();
 }}
-
+System.out.print(ConsoleColors.RESET);
 }
 
 static void boundary()
@@ -266,7 +267,7 @@ for(int x=1;x<78;x++){
 	escCode = 0x1B;
 	row = x; column =1;
 	System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.print("_");
+System.out.print(ConsoleColors.CYAN+"_");
 }
 
 
@@ -291,17 +292,32 @@ for(int x=95;x>1;x--){
 	System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.print("|");
 }
+System.out.print(ConsoleColors.RESET);
 }
 
-static void howplay() throws IOException{
+static void howplay() throws IOException
+{
 boundary();
+char escCode = 0x1B; int row = 1,column = 1;
 
-char escCode = 0x1B;
-int row = 3; int column = 3;
+System.out.print(ConsoleColors.BLACK_BACKGROUND);
+for(int pk=2;pk<=52;pk++){
+for(int ok =3;ok<=93;ok++)
+{escCode = 0x1B;
+row = pk; column =ok;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
+System.out.print(" ");
+}}
+System.out.print(ConsoleColors.RESET);
 
+
+escCode = 0x1B;
+row = 3; column = 3;
+System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.println(":::::HOW TO PLAY:::::");
 
+
+System.out.print(ConsoleColors.RED_BACKGROUND);
 escCode = 0x1B;
 row = 8; column =8;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
@@ -317,11 +333,14 @@ escCode = 0x1B;
 row = 20; column =14;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.println("<-- mouse left                   mouse right -->");
+System.out.print(ConsoleColors.RESET);
+
 
 escCode = 0x1B;
 row = 45; column =24;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.println("Press enter to return to menu.");
+
 
 char ch= (char) System.in.read();
 if ((int)ch==10)
@@ -336,7 +355,7 @@ boundary();
 char escCode = 0x1B;
 int row = 3; int column = 3;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.println("::::CREDITS::::");
+System.out.println(ConsoleColors.RED+"::::CREDITS::::");
 
 escCode = 0x1B;
 row = 7; column =8;
@@ -385,7 +404,7 @@ escCode = 0x1B;
 row = 45; column =24;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.println("Press enter to return to menu.");
-
+System.out.print(ConsoleColors.RESET);
 char ch= (char) System.in.read();
 if ((int)ch==10)
 {boundary();
@@ -425,7 +444,7 @@ case 2 : if(x2-5>15){
 	   escCode = 0x1B;  x2-=5;
 	   row =20 ; column =x2;
 	   System.out.print(String.format("%c[%d;%df",escCode,row,column));
-	   System.out.print("@");}
+	   System.out.print(ConsoleColors.BLACK_BACKGROUND+"@"); System.out.print(ConsoleColors.RESET);}
 	   break;
 
 case 3 : if(x2+5 <50){
@@ -436,7 +455,7 @@ case 3 : if(x2+5 <50){
 	   escCode = 0x1B; x2=x2+5;
 	   row =20 ; column =x2;
 	   System.out.print(String.format("%c[%d;%df",escCode,row,column));
-	   System.out.print("@");}
+	   System.out.print(ConsoleColors.BLACK_BACKGROUND+"@");  System.out.print(ConsoleColors.RESET);}
 	   break;
 	 }
 
@@ -453,9 +472,18 @@ static void createdisplay()
         int row,column;
 
          boundary ();
+System.out.print(ConsoleColors.BLACK_BACKGROUND);
+for(int pk=2;pk<=52;pk++){
+for(int ok =3;ok<=93;ok++)
+{escCode = 0x1B;
+row = pk; column =ok;
+System.out.print(String.format("%c[%d;%df",escCode,row,column));
+System.out.print(" ");
+}}
+System.out.print(ConsoleColors.RESET);
 
 escCode = 0x1B;
-row = 3; column =2;
+row = 3; column =4;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 
 
@@ -470,11 +498,21 @@ try {
 
 createboundary ();
 
+System.out.print(ConsoleColors.BLACK_BACKGROUND);
+for(int pk=2;pk<=52;pk++){
+for(int ok =3;ok<=76;ok++)
+{escCode = 0x1B;
+row = pk; column =ok;
+System.out.print(String.format("%c[%d;%df",escCode,row,column));
+System.out.print(" ");
+}}
+System.out.print(ConsoleColors.RESET);
+
 for(int pk=78;pk<=95;pk++){
 escCode = 0x1B;
 row = 1; column =pk;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.print("#");
+System.out.print(ConsoleColors.RED+"#");
 }
 
 
@@ -498,16 +536,17 @@ row = pk; column =94;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 System.out.print("#");
 }
+System.out.print(ConsoleColors.RESET);
 
 escCode = 0x1B;
 row = 5; column =79;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 
-System.out.println(" SCORE ");
+System.out.println(ConsoleColors.PURPLE+" SCORE ");
+System.out.print(ConsoleColors.RESET);
 
 
-
-for(int i=1,l=0;i<49;i+=2,l++){
+for(int i=1,l=0;i<53;i+=2,l++){
 	escCode = 0x1B;
 	row = i; column =15;
 	System.out.print(String.format("%c[%d;%df",escCode,row,column));
@@ -520,8 +559,8 @@ escCode = 0x1B;
 row = i; column =32;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
 x[l]=i;
-System.out.println("^");
-
+System.out.println(ConsoleColors.YELLOW+"^");
+System.out.print(ConsoleColors.RESET);
 }
 }
 
@@ -675,7 +714,15 @@ else if (g==0)
       escCode = 0x1B;
     row = 35; column =7;
 System.out.print(String.format("%c[%d;%df",escCode,row,column));
-System.out.println("1.Create new username ? \n 2.Play as guest. \n 3.Enter another valid username."); 
+System.out.println("1.Create new username ? "); 
+escCode = 0x1B;
+    row = 36; column =7;
+System.out.print(String.format("%c[%d;%df",escCode,row,column));
+System.out.println("2.Play as guest. ");
+escCode = 0x1B;
+    row = 37; column =7;
+System.out.print(String.format("%c[%d;%df",escCode,row,column));
+System.out.println("3.Enter another valid username.");
 int n=0;
 
 while ((n!=1)&&(n!=2)&&(n!=3))
@@ -971,3 +1018,80 @@ class Username implements java.io.Serializable
 
             
 }
+
+class ConsoleColors {
+    // Reset
+    public static final String RESET = "\033[0m";  // Text Reset
+
+    // Regular Colors
+    public static final String BLACK = "\033[0;30m";   // BLACK
+    public static final String RED = "\033[0;31m";     // RED
+    public static final String GREEN = "\033[0;32m";   // GREEN
+    public static final String YELLOW = "\033[0;33m";  // YELLOW
+    public static final String BLUE = "\033[0;34m";    // BLUE
+    public static final String PURPLE = "\033[0;35m";  // PURPLE
+    public static final String CYAN = "\033[0;36m";    // CYAN
+    public static final String WHITE = "\033[0;37m";   // WHITE
+
+    // Bold
+    public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
+    public static final String RED_BOLD = "\033[1;31m";    // RED
+    public static final String GREEN_BOLD = "\033[1;32m";  // GREEN
+    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    public static final String BLUE_BOLD = "\033[1;34m";   // BLUE
+    public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
+    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
+    public static final String WHITE_BOLD = "\033[1;37m";  // WHITE
+
+    // Underline
+    public static final String BLACK_UNDERLINED = "\033[4;30m";  // BLACK
+    public static final String RED_UNDERLINED = "\033[4;31m";    // RED
+    public static final String GREEN_UNDERLINED = "\033[4;32m";  // GREEN
+    public static final String YELLOW_UNDERLINED = "\033[4;33m"; // YELLOW
+    public static final String BLUE_UNDERLINED = "\033[4;34m";   // BLUE
+    public static final String PURPLE_UNDERLINED = "\033[4;35m"; // PURPLE
+    public static final String CYAN_UNDERLINED = "\033[4;36m";   // CYAN
+    public static final String WHITE_UNDERLINED = "\033[4;37m";  // WHITE
+
+    // Background
+    public static final String BLACK_BACKGROUND = "\033[40m";  // BLACK
+    public static final String RED_BACKGROUND = "\033[41m";    // RED
+    public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
+    public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+    public static final String BLUE_BACKGROUND = "\033[44m";   // BLUE
+    public static final String PURPLE_BACKGROUND = "\033[45m"; // PURPLE
+    public static final String CYAN_BACKGROUND = "\033[46m";   // CYAN
+    public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
+
+    // High Intensity
+    public static final String BLACK_BRIGHT = "\033[0;90m";  // BLACK
+    public static final String RED_BRIGHT = "\033[0;91m";    // RED
+    public static final String GREEN_BRIGHT = "\033[0;92m";  // GREEN
+    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
+    public static final String BLUE_BRIGHT = "\033[0;94m";   // BLUE
+    public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
+    public static final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
+    public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
+
+    // Bold High Intensity
+    public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
+    public static final String RED_BOLD_BRIGHT = "\033[1;91m";   // RED
+    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m"; // GREEN
+    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";// YELLOW
+    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";  // BLUE
+    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";// PURPLE
+    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m";  // CYAN
+    public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
+
+    // High Intensity backgrounds
+    public static final String BLACK_BACKGROUND_BRIGHT = "\033[0;100m";// BLACK
+    public static final String RED_BACKGROUND_BRIGHT = "\033[0;101m";// RED
+    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";// GREEN
+    public static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";// YELLOW
+    public static final String BLUE_BACKGROUND_BRIGHT = "\033[0;104m";// BLUE
+    public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
+    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
+    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+
+}
+
